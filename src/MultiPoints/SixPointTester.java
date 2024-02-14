@@ -1,6 +1,5 @@
 package MultiPoints;
 import java.util.Scanner;
-import PointDemo.NamedPoint;
 
 /**
  * This Java program calculates the shortest distance between a set of points entered by the user.
@@ -20,10 +19,10 @@ public class SixPointTester {
     public static Scanner scanner = new Scanner(System.in);
 
     //method asks the user to enter coords to create 6 point.
-    public static Point[] enterPoints() {
+    public static NamedPoint[] enterPoints() {
 
         //array containing 6 indexes
-        Point[] points = new Point[6];
+        NamedPoint[] points = new NamedPoint[6];
         System.out.println("Enter 6 points of x and y coords: ");
 
         //used to assign names to the points and iterates by each char in the loop below
@@ -35,17 +34,15 @@ public class SixPointTester {
             System.out.print("Enter y coord for Point " + abc.charAt(i) + ": ");
             double y = scanner.nextDouble();
 
-            points[i] = new Point(x, y);
+            points[i] = new NamedPoint(x, y, abc.charAt(i) + "");
 
-            //converting Point --> NamedPoint object
-            NamedPoint namedPoint = new NamedPoint(points[i].getX(), points[i].getY(), abc.charAt(i) + "");
-            System.out.println(namedPoint);
+            System.out.println(points[i]);
         }
 
         return points;
     }
 
-    public static void computeShortestDistance(Point[] points) {
+    public static void computeShortestDistance(NamedPoint[] points) {
 
         //shortestDistance is assigned to the biggest value for a double to handle edge cases
         double shortestDistance = Double.MAX_VALUE;
@@ -54,6 +51,7 @@ public class SixPointTester {
         NamedPoint p1 = null;
         NamedPoint p2 = null;
 
+
         for (int i = 0; i < points.length; i++) {
 
             for(int j = i + 1; j < points.length; j++) {
@@ -61,12 +59,10 @@ public class SixPointTester {
 
                 if (dist < shortestDistance) {
                     shortestDistance = dist;
-                    //p1 = points[i];
-                    //p2 = points[j];
 
                     //the new shorted Point distances will be converted --> NamedPoint object
-                    p1 = new NamedPoint(points[i].getX(), points[i].getY(), abc.charAt(i) + "");
-                    p2 = new NamedPoint(points[j].getX(), points[j].getY(), abc.charAt(j) + "");
+                    p1 = new NamedPoint(points[i].getX(), points[i].getY(), abc.charAt(i)+"");
+                    p2 = new NamedPoint(points[j].getX(), points[j].getY(), abc.charAt(j)+"");
                 }
             }
         }
@@ -74,7 +70,6 @@ public class SixPointTester {
         //able to print out toString for NamedPoint objects
         System.out.printf("The shortest distance of two points are: \n   %s   %s and their " +
                 "distance is %.2f", p1, p2, shortestDistance);
-
     }
 
 

@@ -1,3 +1,5 @@
+package PointDemo;
+
 public class NamedPoint extends Point {
     private String name;
     public NamedPoint(double x, double y, String name){
@@ -10,6 +12,6 @@ public class NamedPoint extends Point {
     @Override
     public String toString(){
         //return name + super.toString();
-        return name + "(" + getX() + ", " + getY() + ")";
+        return name + "(" + getX() + ", " + getY() + ")\n";
     }
 }
